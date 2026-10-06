@@ -5,6 +5,16 @@ from src.config import AVAILABLE, USED
 from src.game_logic import house_cards, load_players, reset_house, set_card_status, set_mandatory
 
 st.set_page_config(page_title="Le mie carte", page_icon="🃏", layout="wide")
+st.markdown("""
+<style>
+.block-container {padding-top: 1.5rem;}
+[data-testid="stMetric"] {border: 1px solid rgba(128,128,128,.25); border-radius: 14px; padding: 10px;}
+.card-title {font-size:1.08rem;font-weight:700;margin-bottom:.2rem}
+.card-meta {opacity:.75;font-size:.9rem;margin-bottom:.35rem}
+.effect {min-height:3.8rem;font-size:.93rem;line-height:1.35}
+</style>
+""", unsafe_allow_html=True)
+
 st.title("🃏 Le mie carte")
 
 players = load_players()
@@ -19,9 +29,14 @@ cards = house_cards(house)
 
 available_count = int((cards["status"] == AVAILABLE).sum())
 used_count = int((cards["status"] == USED).sum())
-m1, m2 = st.columns(2)
+
+m1, m2, m3 = st.columns(3)
 m1.metric("Disponibili", available_count)
 m2.metric("Usate", used_count)
+m3.metric("Totale", len(cards))
+
+if used_count == len(cards) and len(cards):
+    st.success("Tutte le carte sono state utilizzate: il mazzo può essere recuperato.")
 
 if st.button("♻️ Recupera tutte le carte della casata", use_container_width=True):
     reset_house(house)
@@ -34,27 +49,41 @@ cols = st.columns(3)
 for idx, row in enumerate(cards.itertuples()):
     with cols[idx % 3]:
         status = row.status if isinstance(row.status, str) else AVAILABLE
-        icon = "🟢" if status == AVAILABLE else "🔴"
-        st.subheader(f"{icon} {row.display_name}")
-        st.caption(f"Valore {row.strength} · {status}")
+        available = status == AVAILABLE
+        with st.container(border=True):
+            st.markdown(
+                f"<div class='card-title'>{'🟢' if available else '🔴'} {row.display_name}</div>"
+                f"<div class='card-meta'>Forza {row.strength} · {'DISPONIBILE' if available else 'USATA'}</div>",
+                unsafe_allow_html=True,
+            )
 
-        img = Path(row.image_path)
-        if img.exists():
-            st.image(str(img), use_container_width=True)
-        else:
-            st.info(f"Immagine non ancora caricata: {row.image_path}")
+            img = Path(row.image_path)
+            if img.exists():
+                st.image(str(img), use_container_width=True)
+            else:
+                st.caption(f"🖼️ {row.card_id} · immagine da collegare")
 
-        mandatory = bool(row.mandatory) if str(row.mandatory) != "nan" else False
-        new_mandatory = st.checkbox("Mandatory", value=mandatory, key=f"mandatory_{row.card_id}")
-        if new_mandatory != mandatory:
-            set_mandatory(row.card_id, new_mandatory)
-            st.rerun()
+            icons = getattr(row, "icons", "")
+            if isinstance(icons, str) and icons.strip():
+                st.markdown(f"**Icone:** {icons}")
 
-        if status == AVAILABLE:
-            if st.button("Segna come utilizzata", key=f"use_{row.card_id}", use_container_width=True):
-                set_card_status(row.card_id, USED)
+            effect = getattr(row, "effect_summary", "")
+            if isinstance(effect, str) and effect.strip():
+                st.markdown(f"<div class='effect'><b>Effetto:</b> {effect}</div>", unsafe_allow_html=True)
+            else:
+                st.markdown("<div class='effect'><b>Effetto:</b> —</div>", unsafe_allow_html=True)
+
+            mandatory = bool(row.mandatory) if str(row.mandatory) != "nan" else False
+            new_mandatory = st.checkbox("Mandatory", value=mandatory, key=f"mandatory_{row.card_id}")
+            if new_mandatory != mandatory:
+                set_mandatory(row.card_id, new_mandatory)
                 st.rerun()
-        else:
-            if st.button("♻️ Recupera questa carta", key=f"recover_{row.card_id}", use_container_width=True):
-                set_card_status(row.card_id, AVAILABLE)
-                st.rerun()
+
+            if available:
+                if st.button("Usa carta", key=f"use_{row.card_id}", type="primary", use_container_width=True):
+                    set_card_status(row.card_id, USED)
+                    st.rerun()
+            else:
+                if st.button("♻️ Recupera carta", key=f"recover_{row.card_id}", use_container_width=True):
+                    set_card_status(row.card_id, AVAILABLE)
+                    st.rerun()
