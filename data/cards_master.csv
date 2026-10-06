@@ -1,43 +1,43 @@
-house,card_id,display_name,strength,image_path
-Stark,STARK_01,Carta Stark 1,4,assets/cards/stark/STARK_01.png
-Stark,STARK_02,Carta Stark 2,3,assets/cards/stark/STARK_02.png
-Stark,STARK_03,Carta Stark 3,2,assets/cards/stark/STARK_03.png
-Stark,STARK_04,Carta Stark 4,2,assets/cards/stark/STARK_04.png
-Stark,STARK_05,Carta Stark 5,1,assets/cards/stark/STARK_05.png
-Stark,STARK_06,Carta Stark 6,1,assets/cards/stark/STARK_06.png
-Stark,STARK_07,Carta Stark 7,0,assets/cards/stark/STARK_07.png
-Lannister,LANNISTER_01,Carta Lannister 1,4,assets/cards/lannister/LANNISTER_01.png
-Lannister,LANNISTER_02,Carta Lannister 2,3,assets/cards/lannister/LANNISTER_02.png
-Lannister,LANNISTER_03,Carta Lannister 3,2,assets/cards/lannister/LANNISTER_03.png
-Lannister,LANNISTER_04,Carta Lannister 4,2,assets/cards/lannister/LANNISTER_04.png
-Lannister,LANNISTER_05,Carta Lannister 5,1,assets/cards/lannister/LANNISTER_05.png
-Lannister,LANNISTER_06,Carta Lannister 6,1,assets/cards/lannister/LANNISTER_06.png
-Lannister,LANNISTER_07,Carta Lannister 7,0,assets/cards/lannister/LANNISTER_07.png
-Baratheon,BARATHEON_01,Carta Baratheon 1,4,assets/cards/baratheon/BARATHEON_01.png
-Baratheon,BARATHEON_02,Carta Baratheon 2,3,assets/cards/baratheon/BARATHEON_02.png
-Baratheon,BARATHEON_03,Carta Baratheon 3,2,assets/cards/baratheon/BARATHEON_03.png
-Baratheon,BARATHEON_04,Carta Baratheon 4,2,assets/cards/baratheon/BARATHEON_04.png
-Baratheon,BARATHEON_05,Carta Baratheon 5,1,assets/cards/baratheon/BARATHEON_05.png
-Baratheon,BARATHEON_06,Carta Baratheon 6,1,assets/cards/baratheon/BARATHEON_06.png
-Baratheon,BARATHEON_07,Carta Baratheon 7,0,assets/cards/baratheon/BARATHEON_07.png
-Greyjoy,GREYJOY_01,Carta Greyjoy 1,4,assets/cards/greyjoy/GREYJOY_01.png
-Greyjoy,GREYJOY_02,Carta Greyjoy 2,3,assets/cards/greyjoy/GREYJOY_02.png
-Greyjoy,GREYJOY_03,Carta Greyjoy 3,2,assets/cards/greyjoy/GREYJOY_03.png
-Greyjoy,GREYJOY_04,Carta Greyjoy 4,2,assets/cards/greyjoy/GREYJOY_04.png
-Greyjoy,GREYJOY_05,Carta Greyjoy 5,1,assets/cards/greyjoy/GREYJOY_05.png
-Greyjoy,GREYJOY_06,Carta Greyjoy 6,1,assets/cards/greyjoy/GREYJOY_06.png
-Greyjoy,GREYJOY_07,Carta Greyjoy 7,0,assets/cards/greyjoy/GREYJOY_07.png
-Tyrell,TYRELL_01,Carta Tyrell 1,4,assets/cards/tyrell/TYRELL_01.png
-Tyrell,TYRELL_02,Carta Tyrell 2,3,assets/cards/tyrell/TYRELL_02.png
-Tyrell,TYRELL_03,Carta Tyrell 3,2,assets/cards/tyrell/TYRELL_03.png
-Tyrell,TYRELL_04,Carta Tyrell 4,2,assets/cards/tyrell/TYRELL_04.png
-Tyrell,TYRELL_05,Carta Tyrell 5,1,assets/cards/tyrell/TYRELL_05.png
-Tyrell,TYRELL_06,Carta Tyrell 6,1,assets/cards/tyrell/TYRELL_06.png
-Tyrell,TYRELL_07,Carta Tyrell 7,0,assets/cards/tyrell/TYRELL_07.png
-Martell,MARTELL_01,Carta Martell 1,4,assets/cards/martell/MARTELL_01.png
-Martell,MARTELL_02,Carta Martell 2,3,assets/cards/martell/MARTELL_02.png
-Martell,MARTELL_03,Carta Martell 3,2,assets/cards/martell/MARTELL_03.png
-Martell,MARTELL_04,Carta Martell 4,2,assets/cards/martell/MARTELL_04.png
-Martell,MARTELL_05,Carta Martell 5,1,assets/cards/martell/MARTELL_05.png
-Martell,MARTELL_06,Carta Martell 6,1,assets/cards/martell/MARTELL_06.png
-Martell,MARTELL_07,Carta Martell 7,0,assets/cards/martell/MARTELL_07.png
+house,card_id,display_name,strength,effect_summary,icons,image_path
+Stark,STARK_01,Eddard Stark,4,,2 Swords,assets/cards/stark/STARK_01.png
+Stark,STARK_02,Robb Stark,3,Scegli l'area di ritirata avversaria se vinci.,,assets/cards/stark/STARK_02.png
+Stark,STARK_03,Roose Bolton,2,Se perdi recuperi in mano tutte le carte Casa scartate.,,assets/cards/stark/STARK_03.png
+Stark,STARK_04,Greatjon Umber,2,,1 Sword,assets/cards/stark/STARK_04.png
+Stark,STARK_05,Ser Rodrik Cassel,1,,2 Fortifications,assets/cards/stark/STARK_05.png
+Stark,STARK_06,Il Pesce Nero,1,Previene le perdite causate da abilità e icone di combattimento.,,assets/cards/stark/STARK_06.png
+Stark,STARK_07,Catelyn Stark,0,Raddoppia il valore dell'ordine Difesa nell'area contesa.,,assets/cards/stark/STARK_07.png
+Lannister,LANNISTER_01,Tywin Lannister,4,Se vinci ottieni 2 segnalini Potere.,,assets/cards/lannister/LANNISTER_01.png
+Lannister,LANNISTER_02,Ser Gregor Clegane,3,,3 Swords,assets/cards/lannister/LANNISTER_02.png
+Lannister,LANNISTER_03,Il Mastino,2,,2 Fortifications,assets/cards/lannister/LANNISTER_03.png
+Lannister,LANNISTER_04,Ser Jaime Lannister,2,,1 Sword,assets/cards/lannister/LANNISTER_04.png
+Lannister,LANNISTER_05,Tyrion Lannister,1,Può annullare la carta Casa avversaria e costringerne la sostituzione.,,assets/cards/lannister/LANNISTER_05.png
+Lannister,LANNISTER_06,Ser Kevan Lannister,1,In attacco i Fanti Lannister partecipanti valgono +2 invece di +1.,,assets/cards/lannister/LANNISTER_06.png
+Lannister,LANNISTER_07,Cersei Lannister,0,Se vinci puoi rimuovere un ordine avversario dal tabellone.,,assets/cards/lannister/LANNISTER_07.png
+Baratheon,BARATHEON_01,Stannis Baratheon,4,Ottiene +1 se l'avversario è più in alto sulla traccia Trono di Spade.,,assets/cards/baratheon/BARATHEON_01.png
+Baratheon,BARATHEON_02,Renly Baratheon,3,Se vinci puoi promuovere un Fante partecipante a Cavaliere.,,assets/cards/baratheon/BARATHEON_02.png
+Baratheon,BARATHEON_03,Ser Davos Seaworth,2,Se Stannis è negli scarti ottiene +1 e una Spada.,,assets/cards/baratheon/BARATHEON_03.png
+Baratheon,BARATHEON_04,Brienne di Tarth,2,,1 Sword + 1 Fortification,assets/cards/baratheon/BARATHEON_04.png
+Baratheon,BARATHEON_05,Melisandre,1,,1 Sword,assets/cards/baratheon/BARATHEON_05.png
+Baratheon,BARATHEON_06,Salladhor Saan,1,Se ricevi supporto le navi non Baratheon di supporto valgono 0.,,assets/cards/baratheon/BARATHEON_06.png
+Baratheon,BARATHEON_07,Macchia,0,Dopo il combattimento puoi scartare una carta scelta dalla mano avversaria.,,assets/cards/baratheon/BARATHEON_07.png
+Greyjoy,GREYJOY_01,Euron Occhio di Corvo,4,,1 Sword,assets/cards/greyjoy/GREYJOY_01.png
+Greyjoy,GREYJOY_02,Victarion Greyjoy,3,In attacco le Navi Greyjoy partecipanti valgono +2 invece di +1.,,assets/cards/greyjoy/GREYJOY_02.png
+Greyjoy,GREYJOY_03,Theon Greyjoy,2,In difesa di Castello/Roccaforte ottiene +1 e una Spada.,,assets/cards/greyjoy/GREYJOY_03.png
+Greyjoy,GREYJOY_04,Balon Greyjoy,2,La forza stampata della carta Casa avversaria diventa 0.,,assets/cards/greyjoy/GREYJOY_04.png
+Greyjoy,GREYJOY_05,Asha Greyjoy,1,Senza supporto ottiene 2 Spade e 1 Fortificazione.,,assets/cards/greyjoy/GREYJOY_05.png
+Greyjoy,GREYJOY_06,Dagmer Mascella Spaccata,1,,1 Sword + 1 Fortification,assets/cards/greyjoy/GREYJOY_06.png
+Greyjoy,GREYJOY_07,Aeron Capelli Bagnati,0,Puoi pagare 2 Potere per scartarla e scegliere un'altra carta Casa.,,assets/cards/greyjoy/GREYJOY_07.png
+Tyrell,TYRELL_01,Mace Tyrell,4,Distrugge subito un Fante avversario coinvolto nel combattimento.,,assets/cards/tyrell/TYRELL_01.png
+Tyrell,TYRELL_02,Ser Loras Tyrell,3,Se attacchi e vinci puoi riutilizzare l'ordine Marcia nell'area conquistata.,,assets/cards/tyrell/TYRELL_02.png
+Tyrell,TYRELL_03,Ser Garlan Tyrell,2,,2 Swords,assets/cards/tyrell/TYRELL_03.png
+Tyrell,TYRELL_04,Randyll Tarly,2,,1 Sword,assets/cards/tyrell/TYRELL_04.png
+Tyrell,TYRELL_05,Alester Florent,1,,1 Fortification,assets/cards/tyrell/TYRELL_05.png
+Tyrell,TYRELL_06,Margaery Tyrell,1,,1 Fortification,assets/cards/tyrell/TYRELL_06.png
+Tyrell,TYRELL_07,Regina di Spine,0,Rimuove un ordine avversario da un'area adiacente a quella contesa.,,assets/cards/tyrell/TYRELL_07.png
+Martell,MARTELL_01,La Vipera Rossa,4,,2 Swords + 1 Fortification,assets/cards/martell/MARTELL_01.png
+Martell,MARTELL_02,Areo Hotah,3,,1 Fortification,assets/cards/martell/MARTELL_02.png
+Martell,MARTELL_03,Obara Sand,2,,1 Sword,assets/cards/martell/MARTELL_03.png
+Martell,MARTELL_04,Stella Nera,2,,1 Sword,assets/cards/martell/MARTELL_04.png
+Martell,MARTELL_05,Nymeria Sand,1,In difesa ottiene Fortificazione; in attacco ottiene Spada.,,assets/cards/martell/MARTELL_05.png
+Martell,MARTELL_06,Arianne Martell,1,Se difendi e perdi l'attaccante non entra nell'area contesa.,,assets/cards/martell/MARTELL_06.png
+Martell,MARTELL_07,Doran Martell,0,Sposta subito l'avversario in fondo a una traccia Influenza a scelta.,,assets/cards/martell/MARTELL_07.png
