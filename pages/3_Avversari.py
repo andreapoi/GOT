@@ -59,9 +59,5 @@ for idx, row in enumerate(cards.itertuples()):
             else:
                 st.markdown("<div class='effect'><b>Effetto:</b> —</div>", unsafe_allow_html=True)
 
-            mandatory = bool(row.mandatory) if str(row.mandatory) != "nan" else False
-            if mandatory:
-                st.warning("⚠️ Mandatory")
-
             if not available:
                 st.error("USATA")
