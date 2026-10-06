@@ -34,7 +34,19 @@ def load_players() -> pd.DataFrame:
 
 
 def load_status() -> pd.DataFrame:
-    return read_csv(CARD_STATUS, ["game_id","house","card_id","status","mandatory","last_used"])
+    df = read_csv(
+        CARD_STATUS,
+        ["game_id","house","card_id","status","mandatory","last_used"],
+    )
+
+    # An empty CSV column is otherwise inferred by pandas as float64 (NaN).
+    # Keep last_used explicitly textual because it later stores ISO timestamps.
+    if "last_used" not in df.columns:
+        df["last_used"] = pd.Series(dtype="string")
+    else:
+        df["last_used"] = df["last_used"].fillna("").astype("string")
+
+    return df
 
 
 def load_game_state() -> dict:
@@ -52,7 +64,7 @@ def new_game() -> str:
     status.insert(0, "game_id", game_id)
     status["status"] = AVAILABLE
     status["mandatory"] = False
-    status["last_used"] = ""
+    status["last_used"] = pd.Series([""] * len(status), dtype="string")
 
     write_csv(PLAYERS, players, f"game: reset players for {game_id}")
     write_csv(CARD_STATUS, status, f"game: reset card status for {game_id}")
