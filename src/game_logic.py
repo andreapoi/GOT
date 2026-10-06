@@ -34,19 +34,17 @@ def load_players() -> pd.DataFrame:
 
 
 def load_status() -> pd.DataFrame:
-    df = read_csv(
-        CARD_STATUS,
-        ["game_id","house","card_id","status","mandatory","last_used"],
-    )
+    expected = ["game_id","house","card_id","status","last_used"]
+    df = read_csv(CARD_STATUS, expected)
 
-    # An empty CSV column is otherwise inferred by pandas as float64 (NaN).
-    # Keep last_used explicitly textual because it later stores ISO timestamps.
-    if "last_used" not in df.columns:
-        df["last_used"] = pd.Series(dtype="string")
-    else:
-        df["last_used"] = df["last_used"].fillna("").astype("string")
+    # Backward compatibility: older files may still contain the removed
+    # "mandatory" column. Keep only the fields still used by the app.
+    for column in expected:
+        if column not in df.columns:
+            df[column] = ""
 
-    return df
+    df["last_used"] = df["last_used"].fillna("").astype("string")
+    return df[expected]
 
 
 def load_game_state() -> dict:
@@ -63,7 +61,6 @@ def new_game() -> str:
     status = master[["house","card_id"]].copy()
     status.insert(0, "game_id", game_id)
     status["status"] = AVAILABLE
-    status["mandatory"] = False
     status["last_used"] = pd.Series([""] * len(status), dtype="string")
 
     write_csv(PLAYERS, players, f"game: reset players for {game_id}")
@@ -109,20 +106,10 @@ def set_card_status(card_id: str, status: str):
     write_csv(CARD_STATUS, df, f"cards: {card_id} -> {status}")
 
 
-def set_mandatory(card_id: str, mandatory: bool):
-    df = load_status()
-    mask = df["card_id"].eq(card_id)
-    if not mask.any():
-        raise ValueError("Carta non trovata.")
-    df.loc[mask, "mandatory"] = bool(mandatory)
-    write_csv(CARD_STATUS, df, f"cards: mandatory {card_id} -> {mandatory}")
-
-
 def reset_house(house: str):
     df = load_status()
     mask = df["house"].eq(house)
     df.loc[mask, "status"] = AVAILABLE
-    df.loc[mask, "mandatory"] = False
     df.loc[mask, "last_used"] = ""
     write_csv(CARD_STATUS, df, f"cards: reset {house}")
 
