@@ -2,7 +2,7 @@ from pathlib import Path
 import streamlit as st
 
 from src.config import AVAILABLE, USED
-from src.game_logic import house_cards, load_players, reset_house, set_card_status, set_mandatory
+from src.game_logic import house_cards, load_players, reset_house, set_card_status
 
 st.set_page_config(page_title="Le mie carte", page_icon="🃏", layout="wide")
 st.markdown("""
@@ -73,17 +73,11 @@ for idx, row in enumerate(cards.itertuples()):
             else:
                 st.markdown("<div class='effect'><b>Effetto:</b> —</div>", unsafe_allow_html=True)
 
-            mandatory = bool(row.mandatory) if str(row.mandatory) != "nan" else False
-            new_mandatory = st.checkbox("Mandatory", value=mandatory, key=f"mandatory_{row.card_id}")
-            if new_mandatory != mandatory:
-                set_mandatory(row.card_id, new_mandatory)
-                st.rerun()
-
             if available:
                 if st.button("Usa carta", key=f"use_{row.card_id}", type="primary", use_container_width=True):
                     set_card_status(row.card_id, USED)
                     st.rerun()
             else:
-                if st.button("♻️ Recupera carta", key=f"recover_{row.card_id}", use_container_width=True):
+                if st.button("♻️ Riabilita questa carta", key=f"recover_{row.card_id}", use_container_width=True):
                     set_card_status(row.card_id, AVAILABLE)
                     st.rerun()
