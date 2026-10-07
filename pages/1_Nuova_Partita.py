@@ -10,16 +10,17 @@ state = load_game_state()
 st.write(f"**Partita attiva:** {state.get('game_id') or 'nessuna'}")
 
 with st.expander("Reset completo partita", expanded=state.get("status") != "ACTIVE"):
-    st.warning("Questa operazione azzera giocatori e stato di tutte le carte.")
+    st.warning("Questa operazione azzera giocatori, stato carte e cronologia.")
     confirm = st.checkbox("Confermo di voler iniziare una nuova partita")
     if st.button("NUOVA PARTITA", type="primary", disabled=not confirm, use_container_width=True):
         game_id = new_game()
+        for key in ["my_player_id", "identity_selector", "pending_card", "confirm_reset_house"]:
+            st.session_state.pop(key, None)
         st.success(f"Nuova partita creata: {game_id}")
         st.rerun()
 
 st.divider()
 st.subheader("Aggiungi partecipante")
-
 players = load_players()
 used_houses = set(players["house"].tolist()) if not players.empty else set()
 available_houses = [h for h in HOUSES if h not in used_houses]
@@ -42,4 +43,7 @@ players = load_players()
 if players.empty:
     st.caption("Nessun partecipante inserito.")
 else:
-    st.dataframe(players[["player_name","house"]].rename(columns={"player_name":"Giocatore","house":"Casata"}), hide_index=True, use_container_width=True)
+    st.dataframe(
+        players[["player_name","house"]].rename(columns={"player_name":"Giocatore","house":"Casata"}),
+        hide_index=True, use_container_width=True,
+    )

@@ -6,6 +6,7 @@ CARDS_MASTER = DATA / "cards_master.csv"
 PLAYERS = "data/players.csv"
 CARD_STATUS = "data/card_status.csv"
 GAME_STATE = "data/game_state.json"
+HISTORY = "data/history.csv"
 
 HOUSES = ["Stark", "Lannister", "Baratheon", "Greyjoy", "Tyrell", "Martell"]
 AVAILABLE = "AVAILABLE"
