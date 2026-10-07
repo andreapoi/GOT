@@ -1,35 +1,44 @@
 # GOT Card Tracker
 
-Applicazione Streamlit condivisa per gestire le carte casata durante una partita a **Il Trono di Spade – Il Gioco da Tavolo**.
+Companion Streamlit condiviso per gestire le carte Casa durante una partita a **Il Trono di Spade – Il Gioco da Tavolo**.
 
-## Funzioni V0
+## V1
 
-- Avvio di una nuova partita con reset completo dello stato.
-- Associazione univoca giocatore ↔ casata.
-- Visualizzazione delle proprie carte.
-- Stato carta `AVAILABLE` / `USED`.
-- Flag `mandatory`.
-- Recupero di una singola carta.
-- Reset completo delle carte di una casata.
-- Visualizzazione delle carte avversarie.
-- Dashboard generale dello stato partita.
-- Persistenza condivisa su GitHub.
+La V1 aggiunge alla base funzionante:
+
+- identità del giocatore memorizzata nella sessione;
+- carte usate mostrate in scala di grigi con overlay **USATA**;
+- conferma prima di usare una carta;
+- riabilitazione manuale di ogni singola carta;
+- reset dell'intera mano con conferma;
+- avversari organizzati in tab giocatore/casata;
+- aggiornamento automatico ogni 7 secondi nelle viste condivise;
+- cronologia persistente delle azioni;
+- **Undo** dell'ultima modifica di stato;
+- dashboard globale compatta con tutte le carte;
+- riciclo automatico standard: quando viene usata la settima carta, le altre sei tornano disponibili;
+- supporto a Roose Bolton: in caso di sconfitta recupera le altre carte Stark scartate.
 
 ## Struttura
 
-- `app.py`: home.
-- `pages/`: quattro pagine operative.
-- `src/game_logic.py`: logica di gioco.
-- `src/github_store.py`: persistenza GitHub con controllo SHA/retry.
-- `data/cards_master.csv`: anagrafica permanente carte.
-- `data/players.csv`: associazioni della partita corrente.
+- `app.py`: home e selezione identità.
+- `pages/1_Nuova_Partita.py`: nuova partita e giocatori.
+- `pages/2_Le_Mie_Carte.py`: gestione della propria mano.
+- `pages/3_Avversari.py`: stato live degli avversari.
+- `pages/4_Stato_Partita.py`: dashboard, cronologia e undo.
+- `src/game_logic.py`: logica di gioco, history e automazioni.
+- `src/github_store.py`: persistenza su GitHub.
+- `src/ui_helpers.py`: rendering e componenti UI condivisi.
+- `data/cards_master.csv`: anagrafica delle 42 carte.
+- `data/players.csv`: giocatori della partita corrente.
 - `data/card_status.csv`: stato corrente delle carte.
-- `data/game_state.json`: identificativo/stato partita.
-- `assets/cards/`: immagini.
+- `data/history.csv`: cronologia delle azioni.
+- `data/game_state.json`: stato della partita.
+- `assets/cards/`: immagini delle carte.
 
 ## Configurazione Streamlit Cloud
 
-Aggiungere nei Secrets dell'app:
+Nei Secrets dell'app:
 
 ```toml
 GITHUB_TOKEN = "github_pat_..."
@@ -37,9 +46,7 @@ GITHUB_REPO = "andreapoi/GOT"
 GITHUB_BRANCH = "main"
 ```
 
-Il token deve avere permesso di scrittura sul repository.
-
-In locale, se i Secrets non sono configurati, l'app legge e scrive direttamente i file locali del clone.
+Il token deve avere permesso **Contents: Read and write** sulla repository.
 
 ## Avvio locale
 
@@ -48,17 +55,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Immagini delle carte
+## Storage
 
-I 42 record del master sono già predisposti per le sei casate. I nomi carta sono placeholder intenzionali finché non colleghiamo definitivamente le immagini generate.
-
-Path attesi, ad esempio:
-
-- `assets/cards/stark/STARK_01.png`
-- `assets/cards/lannister/LANNISTER_01.png`
-
-La V0 funziona anche senza immagini, mostrando un placeholder.
-
-## Nota tecnica
-
-GitHub viene usato come storage della V0. È sufficiente per gli aggiornamenti sporadici tipici di un gioco da tavolo; in una V1 lo storage può essere sostituito da Supabase/Postgres senza cambiare sostanzialmente l'interfaccia.
+La V1 usa GitHub come storage condiviso. È adatto al volume limitato di aggiornamenti di una partita da tavolo. Se in futuro serviranno più partite contemporanee o maggiore concorrenza, lo strato storage può essere sostituito con Supabase/Postgres mantenendo quasi invariata la UI.
